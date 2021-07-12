@@ -1,0 +1,317 @@
+--- a/src/contrib/windows/libhwloc.vcxproj
++++ b/src/contrib/windows/libhwloc.vcxproj
+@@ -7,6 +7,14 @@
+     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <ItemGroup Label="ProjectConfigurations">
++    <ProjectConfiguration Include="DebugDll|Win32">
++      <Configuration>DebugDll</Configuration>
++      <Platform>Win32</Platform>
++    </ProjectConfiguration>
++    <ProjectConfiguration Include="DebugStatic|Win32">
++      <Configuration>DebugStatic</Configuration>
++      <Platform>Win32</Platform>
++    </ProjectConfiguration>
+     <ProjectConfiguration Include="DebugStatic|x64">
+       <Configuration>DebugStatic</Configuration>
+       <Platform>x64</Platform>
+@@ -15,10 +23,18 @@
+       <Configuration>DebugDll</Configuration>
+       <Platform>x64</Platform>
+     </ProjectConfiguration>
++    <ProjectConfiguration Include="ReleaseStatic|Win32">
++      <Configuration>ReleaseStatic</Configuration>
++      <Platform>Win32</Platform>
++    </ProjectConfiguration>
+     <ProjectConfiguration Include="ReleaseStatic|x64">
+       <Configuration>ReleaseStatic</Configuration>
+       <Platform>x64</Platform>
+     </ProjectConfiguration>
++    <ProjectConfiguration Include="Release|Win32">
++      <Configuration>Release</Configuration>
++      <Platform>Win32</Platform>
++    </ProjectConfiguration>
+     <ProjectConfiguration Include="Release|x64">
+       <Configuration>Release</Configuration>
+       <Platform>x64</Platform>
+@@ -31,12 +47,24 @@
+     <CharacterSet>MultiByte</CharacterSet>
+     <PlatformToolset>v142</PlatformToolset>
+   </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDll|Win32'" Label="Configuration">
++    <ConfigurationType>DynamicLibrary</ConfigurationType>
++    <UseDebugLibraries>true</UseDebugLibraries>
++    <CharacterSet>MultiByte</CharacterSet>
++    <PlatformToolset>v142</PlatformToolset>
++  </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugStatic|x64'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+     <UseDebugLibraries>true</UseDebugLibraries>
+     <CharacterSet>MultiByte</CharacterSet>
+     <PlatformToolset>v142</PlatformToolset>
+   </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugStatic|Win32'" Label="Configuration">
++    <ConfigurationType>StaticLibrary</ConfigurationType>
++    <UseDebugLibraries>true</UseDebugLibraries>
++    <CharacterSet>MultiByte</CharacterSet>
++    <PlatformToolset>v142</PlatformToolset>
++  </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+     <ConfigurationType>DynamicLibrary</ConfigurationType>
+     <UseDebugLibraries>false</UseDebugLibraries>
+@@ -44,6 +72,13 @@
+     <CharacterSet>MultiByte</CharacterSet>
+     <PlatformToolset>v142</PlatformToolset>
+   </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
++    <ConfigurationType>DynamicLibrary</ConfigurationType>
++    <UseDebugLibraries>false</UseDebugLibraries>
++    <WholeProgramOptimization>true</WholeProgramOptimization>
++    <CharacterSet>MultiByte</CharacterSet>
++    <PlatformToolset>v142</PlatformToolset>
++  </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseStatic|x64'" Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+     <UseDebugLibraries>false</UseDebugLibraries>
+@@ -51,21 +86,40 @@
+     <CharacterSet>MultiByte</CharacterSet>
+     <PlatformToolset>v142</PlatformToolset>
+   </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseStatic|Win32'" Label="Configuration">
++    <ConfigurationType>StaticLibrary</ConfigurationType>
++    <UseDebugLibraries>false</UseDebugLibraries>
++    <WholeProgramOptimization>true</WholeProgramOptimization>
++    <CharacterSet>MultiByte</CharacterSet>
++    <PlatformToolset>v142</PlatformToolset>
++  </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+   <ImportGroup Label="ExtensionSettings">
+   </ImportGroup>
+   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='DebugDll|x64'">
+     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+   </ImportGroup>
++  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDll|Win32'" Label="PropertySheets">
++    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
++  </ImportGroup>
+   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugStatic|x64'" Label="PropertySheets">
+     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+   </ImportGroup>
++  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugStatic|Win32'" Label="PropertySheets">
++    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
++  </ImportGroup>
+   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+   </ImportGroup>
++  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
++    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
++  </ImportGroup>
+   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseStatic|x64'" Label="PropertySheets">
+     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+   </ImportGroup>
++  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseStatic|Win32'" Label="PropertySheets">
++    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
++  </ImportGroup>
+   <PropertyGroup Label="UserMacros" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDll|x64'">
+     <LinkIncremental>false</LinkIncremental>
+@@ -74,6 +128,13 @@
+     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+   </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDll|Win32'">
++    <LinkIncremental>false</LinkIncremental>
++    <EmbedManifest>true</EmbedManifest>
++    <TargetName>$(ProjectName)-15</TargetName>
++    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
++    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
++  </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugStatic|x64'">
+     <LinkIncremental>false</LinkIncremental>
+     <EmbedManifest>true</EmbedManifest>
+@@ -81,6 +142,13 @@
+     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+   </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugStatic|Win32'">
++    <LinkIncremental>false</LinkIncremental>
++    <EmbedManifest>true</EmbedManifest>
++    <TargetName>$(ProjectName)-15</TargetName>
++    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
++    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
++  </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+     <LinkIncremental>false</LinkIncremental>
+     <EmbedManifest>true</EmbedManifest>
+@@ -88,6 +156,13 @@
+     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+   </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
++    <LinkIncremental>false</LinkIncremental>
++    <EmbedManifest>true</EmbedManifest>
++    <TargetName>$(ProjectName)-15</TargetName>
++    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
++    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
++  </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseStatic|x64'">
+     <LinkIncremental>false</LinkIncremental>
+     <EmbedManifest>true</EmbedManifest>
+@@ -95,6 +170,13 @@
+     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+   </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseStatic|Win32'">
++    <LinkIncremental>false</LinkIncremental>
++    <EmbedManifest>true</EmbedManifest>
++    <TargetName>$(ProjectName)-15</TargetName>
++    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
++    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
++  </PropertyGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDll|x64'">
+     <PreBuildEvent>
+       <Command>copy /V /Y private_config.h ..\..\include\private\autogen\config.h &amp;&amp; copy /V /Y hwloc_config.h ..\..\include\hwloc\autogen\config.h &amp;&amp; copy /V /Y static-components.h ..\..\hwloc\static-components.h</Command>
+@@ -115,6 +197,26 @@
+       <AdditionalManifestFiles>app.manifest</AdditionalManifestFiles>
+     </Manifest>
+   </ItemDefinitionGroup>
++  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDll|Win32'">
++    <PreBuildEvent>
++      <Command>copy /V /Y private_config.h ..\..\include\private\autogen\config.h &amp;&amp; copy /V /Y hwloc_config.h ..\..\include\hwloc\autogen\config.h &amp;&amp; copy /V /Y static-components.h ..\..\hwloc\static-components.h</Command>
++    </PreBuildEvent>
++    <ClCompile>
++      <PrecompiledHeader>
++      </PrecompiledHeader>
++      <WarningLevel>Level3</WarningLevel>
++      <Optimization>Disabled</Optimization>
++      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
++      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++    </ClCompile>
++    <Link>
++      <SubSystem>Console</SubSystem>
++      <GenerateDebugInformation>true</GenerateDebugInformation>
++    </Link>
++    <Manifest>
++      <AdditionalManifestFiles>app.manifest</AdditionalManifestFiles>
++    </Manifest>
++  </ItemDefinitionGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugStatic|x64'">
+     <PreBuildEvent>
+       <Command>copy /V /Y private_config.h ..\..\include\private\autogen\config.h &amp;&amp; copy /V /Y hwloc_config.h ..\..\include\hwloc\autogen\config.h &amp;&amp; copy /V /Y static-components.h ..\..\hwloc\static-components.h</Command>
+@@ -135,6 +237,26 @@
+       <AdditionalManifestFiles>app.manifest</AdditionalManifestFiles>
+     </Manifest>
+   </ItemDefinitionGroup>
++  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugStatic|Win32'">
++    <PreBuildEvent>
++      <Command>copy /V /Y private_config.h ..\..\include\private\autogen\config.h &amp;&amp; copy /V /Y hwloc_config.h ..\..\include\hwloc\autogen\config.h &amp;&amp; copy /V /Y static-components.h ..\..\hwloc\static-components.h</Command>
++    </PreBuildEvent>
++    <ClCompile>
++      <PrecompiledHeader>
++      </PrecompiledHeader>
++      <WarningLevel>Level3</WarningLevel>
++      <Optimization>Disabled</Optimization>
++      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
++      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++    </ClCompile>
++    <Link>
++      <SubSystem>Console</SubSystem>
++      <GenerateDebugInformation>true</GenerateDebugInformation>
++    </Link>
++    <Manifest>
++      <AdditionalManifestFiles>app.manifest</AdditionalManifestFiles>
++    </Manifest>
++  </ItemDefinitionGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+     <PreBuildEvent>
+       <Command>copy /V /Y private_config.h ..\..\include\private\autogen\config.h &amp;&amp; copy /V /Y hwloc_config.h ..\..\include\hwloc\autogen\config.h &amp;&amp; copy /V /Y static-components.h ..\..\hwloc\static-components.h</Command>
+@@ -171,6 +293,41 @@
+       <AdditionalManifestFiles>app.manifest</AdditionalManifestFiles>
+     </Manifest>
+   </ItemDefinitionGroup>
++  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
++    <PreBuildEvent>
++      <Command>copy /V /Y private_config.h ..\..\include\private\autogen\config.h &amp;&amp; copy /V /Y hwloc_config.h ..\..\include\hwloc\autogen\config.h &amp;&amp; copy /V /Y static-components.h ..\..\hwloc\static-components.h</Command>
++    </PreBuildEvent>
++    <ClCompile>
++      <WarningLevel>Level3</WarningLevel>
++      <PrecompiledHeader>
++      </PrecompiledHeader>
++      <Optimization>MaxSpeed</Optimization>
++      <FunctionLevelLinking>true</FunctionLevelLinking>
++      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
++      <RuntimeTypeInfo>true</RuntimeTypeInfo>
++      <IntrinsicFunctions>true</IntrinsicFunctions>
++      <PreprocessorDefinitions>PSAPI_VERSION=1;WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
++      <AdditionalIncludeDirectories>..\..\include;..\..\hwloc</AdditionalIncludeDirectories>
++    </ClCompile>
++    <Link>
++      <ManifestFile>$(IntDir)$(TargetFileName).intermediate.manifest</ManifestFile>
++      <EnableCOMDATFolding>false</EnableCOMDATFolding>
++      <GenerateDebugInformation>false</GenerateDebugInformation>
++      <GenerateMapFile>false</GenerateMapFile>
++      <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
++      <ImportLibrary>$(OutDir)$(ProjectName).lib</ImportLibrary>
++      <OptimizeReferences>true</OptimizeReferences>
++      <OutputFile>$(OutDir)$(TargetName).dll</OutputFile>
++      <ProgramDatabaseFile>$(OutDir)$(ProjectName).pdb</ProgramDatabaseFile>
++      <ShowProgress>LinkVerboseLib</ShowProgress>
++      <SubSystem>Console</SubSystem>
++      <SuppressStartupBanner>true</SuppressStartupBanner>
++      <LinkErrorReporting>NoErrorReport</LinkErrorReporting>
++    </Link>
++    <Manifest>
++      <AdditionalManifestFiles>app.manifest</AdditionalManifestFiles>
++    </Manifest>
++  </ItemDefinitionGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseStatic|x64'">
+     <PreBuildEvent>
+       <Command>copy /V /Y private_config.h ..\..\include\private\autogen\config.h &amp;&amp; copy /V /Y hwloc_config.h ..\..\include\hwloc\autogen\config.h &amp;&amp; copy /V /Y static-components.h ..\..\hwloc\static-components.h</Command>
+@@ -207,6 +364,41 @@
+       <AdditionalManifestFiles>app.manifest</AdditionalManifestFiles>
+     </Manifest>
+   </ItemDefinitionGroup>
++  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseStatic|Win32'">
++    <PreBuildEvent>
++      <Command>copy /V /Y private_config.h ..\..\include\private\autogen\config.h &amp;&amp; copy /V /Y hwloc_config.h ..\..\include\hwloc\autogen\config.h &amp;&amp; copy /V /Y static-components.h ..\..\hwloc\static-components.h</Command>
++    </PreBuildEvent>
++    <ClCompile>
++      <WarningLevel>Level3</WarningLevel>
++      <PrecompiledHeader>
++      </PrecompiledHeader>
++      <Optimization>MaxSpeed</Optimization>
++      <FunctionLevelLinking>true</FunctionLevelLinking>
++      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
++      <RuntimeTypeInfo>true</RuntimeTypeInfo>
++      <IntrinsicFunctions>true</IntrinsicFunctions>
++      <PreprocessorDefinitions>PSAPI_VERSION=1;WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
++      <AdditionalIncludeDirectories>..\..\include;..\..\hwloc</AdditionalIncludeDirectories>
++    </ClCompile>
++    <Link>
++      <ManifestFile>$(IntDir)$(TargetFileName).intermediate.manifest</ManifestFile>
++      <EnableCOMDATFolding>false</EnableCOMDATFolding>
++      <GenerateDebugInformation>false</GenerateDebugInformation>
++      <GenerateMapFile>false</GenerateMapFile>
++      <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
++      <ImportLibrary>$(OutDir)$(ProjectName).lib</ImportLibrary>
++      <OptimizeReferences>true</OptimizeReferences>
++      <OutputFile>$(OutDir)$(TargetName).lib</OutputFile>
++      <ProgramDatabaseFile>$(OutDir)$(ProjectName).pdb</ProgramDatabaseFile>
++      <ShowProgress>LinkVerboseLib</ShowProgress>
++      <SubSystem>Console</SubSystem>
++      <SuppressStartupBanner>true</SuppressStartupBanner>
++      <LinkErrorReporting>NoErrorReport</LinkErrorReporting>
++    </Link>
++    <Manifest>
++      <AdditionalManifestFiles>app.manifest</AdditionalManifestFiles>
++    </Manifest>
++  </ItemDefinitionGroup>
+   <ItemGroup>
+     <ClCompile Include="..\..\hwloc\base64.c" />
+     <ClCompile Include="..\..\hwloc\bind.c" />
+@@ -256,4 +448,4 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
